@@ -46,6 +46,7 @@ if (-not $pluginJar) {
 Copy-Item -LiteralPath $pluginJar.FullName -Destination $packageRoot
 
 Copy-Item -LiteralPath (Join-Path $root "README.md") -Destination $packageRoot
+Copy-Item -LiteralPath (Join-Path $root "DEPLOYMENT.md") -Destination $packageRoot
 
 $offlineTarget = Join-Path $packageRoot "offline"
 New-Item -ItemType Directory -Path $offlineTarget | Out-Null

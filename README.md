@@ -62,6 +62,11 @@ To build the offline distribution package:
 .\scripts\build-offline-package.ps1
 ```
 
+Detailed deployment instructions:
+
+- [DEPLOYMENT.md](/G:/DBEAEVR/DEPLOYMENT.md)
+- [offline/README_OFFLINE_TRANSFER.md](/G:/DBEAEVR/offline/README_OFFLINE_TRANSFER.md)
+
 ## Installation in DBeaver
 
 1. Build the project and locate the generated plugin jar in `dbeaver-jinja-templater-plugin\target`.
@@ -71,9 +76,8 @@ To build the offline distribution package:
 <DBeaver>\dropins\plugins\
 ```
 
-3. If the build produced nested runtime jars under `lib`, copy them together with the plugin jar.
-4. Restart DBeaver.
-5. Open SQL Editor and use:
+3. Restart DBeaver.
+4. Open SQL Editor and use:
    - `SQL Editor -> Render Jinja Template`
    - SQL editor context menu: `Render Jinja Template`
    - optional shortcut: `Ctrl+Alt+J`

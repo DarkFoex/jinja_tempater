@@ -34,6 +34,7 @@ dist/dbeaver-jinja-templater-offline/
 The package contains:
 
 - plugin jar
+- `DEPLOYMENT.md`
 - nested runtime libraries if present
 - `README.md`
 - `offline/README_OFFLINE_TRANSFER.md`
@@ -113,4 +114,3 @@ Operational validation options:
 - Archive the generated offline zip in your internal artifact storage.
 - Keep the exact source commit, zip checksum, and Java/Maven versions together with the package.
 - If your process requires reproducibility, also archive the populated local Maven repository used for the build.
-

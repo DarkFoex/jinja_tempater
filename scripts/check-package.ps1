@@ -11,6 +11,7 @@ if (-not (Test-Path $PackageRoot)) {
 
 $required = @(
     "README.md",
+    "DEPLOYMENT.md",
     "offline\README_OFFLINE_TRANSFER.md",
     "examples\sample_template.sql",
     "examples\sample_vars.json",
@@ -63,4 +64,3 @@ if ($failed.Count -gt 0) {
 
 Write-Host "Package validation passed."
 Write-Host "Plugin jar: $($pluginJar.Name)"
-
