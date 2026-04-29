@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.dbeaver</groupId>
+        <artifactId>dbeaver-jinja-templater-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>dbeaver-jinja-templater-plugin</artifactId>
+    <packaging>eclipse-plugin</packaging>
+
+    <properties>
+        <tycho.target.file>${project.parent.basedir}/releng/dbeaver-jinja-templater.target</tycho.target.file>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+                    <target>
+                        <file>${tycho.target.file}</file>
+                    </target>
+                    <pomDependencies>consider</pomDependencies>
+                    <environments>
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>macosx</os>
+                            <ws>cocoa</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                    </environments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-core-jar</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.example.dbeaver</groupId>
+                                    <artifactId>templater-core</artifactId>
+                                    <version>${project.version}</version>
+                                    <outputDirectory>${project.basedir}/lib</outputDirectory>
+                                    <destFileName>templater-core.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.example.dbeaver</groupId>
+            <artifactId>templater-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>

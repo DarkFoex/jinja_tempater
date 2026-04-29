@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension point="org.eclipse.ui.commands">
+        <command
+            id="com.example.dbeaver.jinja.templater.command.render"
+            name="Render Jinja Template"
+            description="Render selected SQL text or current SQL editor contents using Jinja-like template variables"/>
+    </extension>
+
+    <extension point="org.eclipse.ui.handlers">
+        <handler
+            commandId="com.example.dbeaver.jinja.templater.command.render"
+            class="com.example.dbeaver.jinja.ui.TemplateRenderCommandHandler"/>
+    </extension>
+
+    <extension point="org.eclipse.ui.bindings">
+        <key
+            commandId="com.example.dbeaver.jinja.templater.command.render"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+J"/>
+    </extension>
+
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution locationURI="menu:org.jkiss.dbeaver.ui.editors.sql?after=additions">
+            <command
+                commandId="com.example.dbeaver.jinja.templater.command.render"
+                icon="icons/jinja.png"
+                label="Render Jinja Template"
+                style="push"/>
+        </menuContribution>
+
+        <menuContribution locationURI="popup:org.jkiss.dbeaver.ui.editors.sql?after=additions">
+            <command
+                commandId="com.example.dbeaver.jinja.templater.command.render"
+                icon="icons/jinja.png"
+                label="Render Jinja Template"
+                style="push"/>
+        </menuContribution>
+    </extension>
+</plugin>
