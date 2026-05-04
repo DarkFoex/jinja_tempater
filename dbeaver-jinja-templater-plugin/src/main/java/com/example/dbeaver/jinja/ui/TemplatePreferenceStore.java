@@ -15,7 +15,7 @@ public final class TemplatePreferenceStore {
         IPreferenceStore store = Activator.getDefault().getPreferenceStore();
         store.setDefault(KEY_LAST_VARIABLES, "{\n  \"schema\": \"public\"\n}");
         store.setDefault(KEY_STRICT_VARIABLES, true);
-        store.setDefault(KEY_RENDER_MODE, RenderMode.PREVIEW_DIALOG.name());
+        store.setDefault(KEY_RENDER_MODE, RenderMode.REPLACE_SELECTION.name());
         store.setDefault(KEY_SAVE_LAST_VARIABLES, true);
     }
 

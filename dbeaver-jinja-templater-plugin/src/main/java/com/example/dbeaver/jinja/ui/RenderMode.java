@@ -7,15 +7,15 @@ public enum RenderMode {
 
     public static RenderMode fromPersisted(String value) {
         if (value == null || value.isBlank()) {
-            return PREVIEW_DIALOG;
+            return REPLACE_SELECTION;
         }
         try {
             if ("OPEN_NEW_EDITOR".equals(value)) {
-                return PREVIEW_DIALOG;
+                return REPLACE_SELECTION;
             }
             return RenderMode.valueOf(value);
         } catch (IllegalArgumentException ex) {
-            return PREVIEW_DIALOG;
+            return REPLACE_SELECTION;
         }
     }
 }
