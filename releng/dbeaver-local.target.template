@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="dbeaver-local-install" sequenceNumber="1">
+    <locations>
+        <location path="C:/Path/To/DBeaver" type="Directory"/>
+    </locations>
+</target>
+

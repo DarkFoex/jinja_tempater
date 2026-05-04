@@ -101,10 +101,28 @@ mvn -q -pl templater-core test
 mvn clean package
 ```
 
+If the public DBeaver P2 repository does not resolve the required `org.jkiss.dbeaver.*` bundles, use a local DBeaver installation as the target platform:
+
+1. Copy `releng\dbeaver-local.target.template` to `releng\dbeaver-local.target`
+2. Edit the `path` attribute to point to your installed DBeaver directory
+3. Run:
+
+```powershell
+mvn "-Dtycho.target.file=%CD%/releng/dbeaver-local.target" clean package
+```
+
+This was the most reliable build mode during self-check.
+
 To create the transfer package:
 
 ```powershell
 .\scripts\build-offline-package.ps1
+```
+
+If you build against a local DBeaver installation target:
+
+```powershell
+.\scripts\build-offline-package.ps1 -TychoTargetFile "$PWD/releng/dbeaver-local.target"
 ```
 
 To verify the package:
@@ -214,4 +232,3 @@ For stable internal deployment:
    - local Maven repository snapshot if required by policy
 3. Move only the packaged ZIP into the closed contour.
 4. Install from the ZIP without any external downloads.
-

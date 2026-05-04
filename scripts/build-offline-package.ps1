@@ -1,5 +1,7 @@
 [CmdletBinding()]
-param()
+param(
+    [string]$TychoTargetFile
+)
 
 $ErrorActionPreference = "Stop"
 
@@ -26,7 +28,11 @@ New-Item -ItemType Directory -Path $packageRoot | Out-Null
 
 Push-Location $root
 try {
-    mvn clean package
+    $mavenArgs = @("clean", "package")
+    if ($TychoTargetFile) {
+        $mavenArgs = @("-Dtycho.target.file=$TychoTargetFile") + $mavenArgs
+    }
+    & mvn @mavenArgs
     if ($LASTEXITCODE -ne 0) {
         throw "Maven build failed with exit code $LASTEXITCODE"
     }

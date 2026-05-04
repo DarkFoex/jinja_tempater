@@ -56,10 +56,35 @@ mvn -q -pl templater-core test
 mvn clean package
 ```
 
+### Recommended local build against installed DBeaver
+
+The public DBeaver P2 repository is not sufficient for resolving all `org.jkiss.dbeaver.*` plugin units needed by this plugin build.
+For the most reliable build, use a locally installed DBeaver as the target platform:
+
+1. Copy [releng/dbeaver-local.target.template](/G:/DBEAEVR/releng/dbeaver-local.target.template) to `releng/dbeaver-local.target`
+2. Replace `C:/Path/To/DBeaver` with your actual DBeaver installation path
+3. Run:
+
+```powershell
+mvn "-Dtycho.target.file=%CD%/releng/dbeaver-local.target" clean package
+```
+
+Example Windows path:
+
+```text
+C:\Users\<user>\AppData\Local\DBeaver
+```
+
 To build the offline distribution package:
 
 ```powershell
 .\scripts\build-offline-package.ps1
+```
+
+Using a local DBeaver target file:
+
+```powershell
+.\scripts\build-offline-package.ps1 -TychoTargetFile "$PWD/releng/dbeaver-local.target"
 ```
 
 Detailed deployment instructions:

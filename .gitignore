@@ -1,5 +1,7 @@
 target/
 dist/
+tools/
+_buildcheck/
 .settings/
 .classpath
 .project
@@ -7,4 +9,3 @@ dist/
 *.iml
 *.log
 *.tmp
-

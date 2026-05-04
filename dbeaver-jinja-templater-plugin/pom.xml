@@ -10,11 +10,11 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>dbeaver-jinja-templater-plugin</artifactId>
+    <artifactId>com.example.dbeaver.jinja.templater</artifactId>
     <packaging>eclipse-plugin</packaging>
 
     <properties>
-        <tycho.target.file>${project.parent.basedir}/releng/dbeaver-jinja-templater.target</tycho.target.file>
+        <tycho.target.file>${project.basedir}/../releng/dbeaver-jinja-templater.target</tycho.target.file>
     </properties>
 
     <build>
@@ -32,7 +32,7 @@
                     <target>
                         <file>${tycho.target.file}</file>
                     </target>
-                    <pomDependencies>consider</pomDependencies>
+                    <pomDependencies>wrapAsBundle</pomDependencies>
                     <environments>
                         <environment>
                             <os>win32</os>
