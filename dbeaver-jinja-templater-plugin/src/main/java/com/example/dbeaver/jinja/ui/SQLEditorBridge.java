@@ -2,9 +2,9 @@ package com.example.dbeaver.jinja.ui;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -24,18 +24,6 @@ public final class SQLEditorBridge {
             return new EditorText(textSelection.getText(), textSelection.getOffset(), textSelection.getLength(), false);
         }
         return new EditorText(document.get(), 0, document.getLength(), true);
-    }
-
-    public void applyRenderedText(IEditorPart editorPart, EditorText source, String rendered, RenderMode mode) throws BadLocationException {
-        ITextEditor editor = requireTextEditor(editorPart);
-        IDocument document = requireDocument(editor);
-        switch (mode) {
-            case REPLACE_SELECTION -> document.replace(source.offset(), source.length(), rendered);
-            case REPLACE_ALL -> document.set(rendered);
-            case PREVIEW_DIALOG -> {
-                // Preview is handled by the command handler, not by the editor bridge.
-            }
-        }
     }
 
     private ITextEditor requireTextEditor(IEditorPart editorPart) {

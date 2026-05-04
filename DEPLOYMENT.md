@@ -173,8 +173,8 @@ Minimum contents:
 4. Start DBeaver.
 5. Open SQL Editor.
 6. Verify one of these appears:
-   - top SQL Editor menu entry
-   - SQL editor context menu entry
+   - top SQL Editor menu entry `Jinja Variables / Preview`
+   - SQL editor context menu entry `Jinja Variables / Preview`
    - shortcut `Ctrl+Alt+J`
 
 ## 8. First verification after deployment
@@ -197,12 +197,17 @@ Use this JSON:
 }
 ```
 
-Expected result:
+Expected result when previewing or executing:
 
 ```sql
 select public as schema_name
 where created_at >= '2026-01-01'
 ```
+
+Important:
+
+- the SQL editor should still display the original Jinja template text
+- the rendered SQL is created only for preview or for the temporary execution pipeline
 
 ## 9. Update procedure
 

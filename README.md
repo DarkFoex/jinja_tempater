@@ -1,10 +1,11 @@
 # DBeaver Jinja Templater
 
-DBeaver Jinja Templater is an offline-first Eclipse plugin for DBeaver Community Edition. It lets users render practical SQL templates with a small Jinja-like syntax directly inside the SQL Editor without Python, external processes, telemetry, or network calls.
+DBeaver Jinja Templater is an offline-first Eclipse plugin for DBeaver Community Edition. It lets users keep Jinja-like SQL templates visible in the SQL Editor and render them only at execution time without Python, external processes, telemetry, or network calls.
 
 ## Features
 
-- Render selected SQL text or the entire SQL editor contents.
+- Keep template syntax visible in SQL Editor while executing rendered SQL against the database.
+- Intercept standard SQL Editor run commands for Jinja-aware execution.
 - Jinja-like syntax for SQL templating:
   - `{{ variable }}`
   - `{{ user.name }}`
@@ -26,6 +27,7 @@ DBeaver Jinja Templater is an offline-first Eclipse plugin for DBeaver Community
   - `Render`
   - `Cancel`
   - optional persistence of last variables
+- Preview command that renders the current selection or full script without modifying editor text.
 - Fully offline operation.
 
 ## Project Layout
@@ -103,20 +105,19 @@ Detailed deployment instructions:
 
 3. Restart DBeaver.
 4. Open SQL Editor and use:
-   - `SQL Editor -> Render Jinja Template`
-   - SQL editor context menu: `Render Jinja Template`
+   - `SQL Editor -> Jinja Variables / Preview`
+   - SQL editor context menu: `Jinja Variables / Preview`
    - optional shortcut: `Ctrl+Alt+J`
 
 ## Usage
 
 1. Open a SQL Editor in DBeaver.
-2. Select a template fragment, or leave nothing selected to render the whole editor.
-3. Run `Render Jinja Template`.
-4. Enter variables JSON in the dialog.
-5. Click `Render`.
-6. The rendered SQL is shown in a preview dialog by default.
-7. Use `Copy to Clipboard` to paste it back into SQL Editor.
-8. Replacement modes remain available through persisted settings for MVP experiments.
+2. Press `Ctrl+Alt+J` or run `Jinja Variables / Preview`.
+3. Enter variables JSON in the dialog.
+4. Click `Render` to preview the currently selected fragment or the whole editor.
+5. Keep the original template text in the editor unchanged.
+6. Use the normal DBeaver run commands such as `Ctrl+Enter` or `Alt+X`.
+7. When the SQL contains `{{`, `{%`, or `{#`, the plugin renders a temporary SQL string and sends that to DBeaver execution.
 
 ## Example Template
 
@@ -192,13 +193,17 @@ select * from {{ schema }}.{{ table }};
   - Check matching `{% endif %}` and `{% endfor %}` blocks.
 - Command is not visible in DBeaver:
   - Verify the plugin jar is inside `dropins/plugins` and restart DBeaver.
+- SQL still reaches the database with `{{ ... }}`:
+  - Open `Jinja Variables / Preview` once and save variables JSON.
+  - Re-run the query using a standard SQL Editor command such as `Ctrl+Enter`.
+  - If needed, restart DBeaver with `-clean` after replacing the plugin jar.
 - Build fails resolving Eclipse bundles:
   - The build machine needs internet access to resolve the target platform once.
 
 ## Roadmap
 
-- Preference page for render mode and strict variables
-- Open rendered SQL in a brand new DBeaver SQL Editor tab
+- Preference page for strict variables and cached JSON management
+- Native editor integration for explain/load-plan Jinja execution
 - More filters
 - `else` / `elif`
 - Template preview diff

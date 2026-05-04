@@ -68,8 +68,9 @@ On the target machine, compare the value with the separately communicated checks
 4. If the package contains runtime libraries outside the plugin jar, copy them exactly as shipped.
 5. Start DBeaver.
 6. Open SQL Editor and check:
-   - top menu contains `Render Jinja Template`
-   - SQL editor context menu contains `Render Jinja Template`
+   - top menu contains `Jinja Variables / Preview`
+   - SQL editor context menu contains `Jinja Variables / Preview`
+   - shortcut `Ctrl+Alt+J` opens the variables dialog
 
 ## 5. How to remove the plugin
 
@@ -107,6 +108,7 @@ Operational validation options:
 - Run DBeaver on a workstation with network disabled and confirm rendering still works.
 - Inspect plugin source and manifest files in this repository.
 - Search the built jar for `http`, `https`, `java.net.HttpURLConnection`, `java.net.http`, or telemetry-related dependencies.
+- Confirm that editor text with `{{ ... }}` stays unchanged while the executed SQL result matches the rendered template values.
 
 ## 8. How to keep dependencies local
 

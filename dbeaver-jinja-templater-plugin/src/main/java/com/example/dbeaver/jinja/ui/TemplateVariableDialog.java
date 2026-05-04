@@ -13,18 +13,6 @@ import org.eclipse.swt.widgets.Text;
 
 public final class TemplateVariableDialog extends TitleAreaDialog {
     private static final int LOAD_EXAMPLE_BUTTON_ID = IDialogConstants.CLIENT_ID + 1;
-    private static final String EXAMPLE_JSON = """
-        {
-          "date_from": "2026-01-01",
-          "date_to": "2026-01-31",
-          "schema": "public",
-          "tables": ["orders", "payments"],
-          "env": "dev",
-          "user": {
-            "name": "Alex"
-          }
-        }
-        """;
 
     private Text jsonText;
     private Button saveLastVariablesButton;
@@ -40,8 +28,8 @@ public final class TemplateVariableDialog extends TitleAreaDialog {
     @Override
     public void create() {
         super.create();
-        setTitle("Render Jinja Template");
-        setMessage("Enter template variables as JSON.");
+        setTitle("Jinja Variables / Preview");
+        setMessage("Enter template variables as JSON. These values are used for runtime SQL execution and preview.");
     }
 
     @Override
@@ -75,7 +63,7 @@ public final class TemplateVariableDialog extends TitleAreaDialog {
     @Override
     protected void buttonPressed(int buttonId) {
         if (buttonId == LOAD_EXAMPLE_BUTTON_ID) {
-            jsonText.setText(EXAMPLE_JSON);
+            jsonText.setText(TemplatePreferenceStore.getExampleJson());
             return;
         }
         super.buttonPressed(buttonId);
@@ -96,4 +84,3 @@ public final class TemplateVariableDialog extends TitleAreaDialog {
         return saveLastVariables;
     }
 }
-
