@@ -43,6 +43,9 @@ public final class JinjaExecuteHandler extends AbstractHandler {
             if (preparedExecution.executionCancelled()) {
                 return null;
             }
+            if (preparedExecution.requiresTransformation()) {
+                LOG.info("Executing SQL through Jinja transformer for command " + event.getCommand().getId());
+            }
 
             if (preparedExecution.requiresTransformation() && mode == ExecutionMode.EXPLAIN_QUERY_PLAN) {
                 MessageDialog.openInformation(
