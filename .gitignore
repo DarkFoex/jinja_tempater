@@ -2,6 +2,7 @@ target/
 dist/
 tools/
 _buildcheck/
+.m2/
 .settings/
 .classpath
 .project
@@ -9,3 +10,5 @@ _buildcheck/
 *.iml
 *.log
 *.tmp
+releng/dbeaver-local.target
+dbeaver-jinja-templater-plugin/lib/
